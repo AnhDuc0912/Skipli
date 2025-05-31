@@ -1,31 +1,25 @@
-# Build phase
 FROM node:20 AS builder
 
 WORKDIR /app
 
-# Copy package.json and package-lock.json (if exists)
 COPY package*.json ./
 
-# Clear npm cache, remove node_modules and package-lock.json, then install dependencies
 RUN npm cache clean --force && \
     rm -rf node_modules package-lock.json && \
     npm install && \
     npm install rollup
 
-# Copy frontend code
+# Copy source code + env file
 COPY . .
+COPY .env.production . 
 
-# Build Vite app
+# Build Vite app - đây là lúc VITE_API_URL trong .env.production được đọc
 RUN npm run build
 
-# Serve phase
 FROM nginx:alpine
 
-# Copy static files from build phase
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Expose port
 EXPOSE 80
 
-# Run Nginx
 CMD ["nginx", "-g", "daemon off;"]
