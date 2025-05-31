@@ -27,11 +27,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:80"
-    environment:
-      - VITE_API_BASE_URL=http://backend:8000/api
-      - VITE_FIREBASE_PROJECT_ID=${VITE_FIREBASE_PROJECT_ID}
-      - VITE_FIREBASE_PRIVATE_KEY=${VITE_FIREBASE_PRIVATE_KEY}
-      - VITE_FIREBASE_CLIENT_EMAIL=${VITE_FIREBASE_CLIENT_EMAIL}
+    env_file:
+      - .env.production
     networks:
       - app-network
 
