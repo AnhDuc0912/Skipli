@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/00762761-1853-4ce8-b406-cd4a92b8a1b7)Code Organization
+Code Organization
 **Back-end**:  Handles API logic, Stringee SMS/Voice, and Firebase integration.
 •	app.js: Initializes Express server and routes.
 •	src/services/stringee.service.js: Manages Stringee API calls.
