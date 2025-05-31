@@ -1,8 +1,8 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-export const generateCaptions = async (socialNetwork, subject, tone) => {
+const generateCaptions = async (socialNetwork, subject, tone) => {
   const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
   
   const prompt = `Hãy tạo 5 caption mạng xã hội bằng tiếng Việt cho nền tảng ${socialNetwork}, chủ đề: "${subject}", với tông giọng ${tone}.
@@ -23,8 +23,7 @@ export const generateCaptions = async (socialNetwork, subject, tone) => {
   }
 };
 
-
-export const generatePostIdeas = async (topic) => {
+const generatePostIdeas = async (topic) => {
   const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
   const prompt = `Hãy liệt kê 12 ý tưởng bài đăng mạng xã hội về chủ đề "${topic}" bằng tiếng Việt. 
   Chỉ liệt kê danh sách các ý tưởng, không cần tiêu đề hoặc phần mở đầu. 
@@ -39,3 +38,5 @@ export const generatePostIdeas = async (topic) => {
     throw error;
   }
 };
+
+module.exports = { generateCaptions, generatePostIdeas };

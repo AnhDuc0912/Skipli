@@ -1,5 +1,5 @@
-import jwt from 'jsonwebtoken';
-import axios from 'axios';
+const jwt = require('jsonwebtoken');
+const axios = require('axios');
 
 const STRINGEE_SMS_API_URL = 'https://api.stringee.com/v1/sms';
 const STRINGEE_VOICE_API_URL = 'https://api.stringee.com/v1/call2/callout';
@@ -27,7 +27,7 @@ const generateStringeeToken = () => {
     });
 };
 
-export const sendSMS = async (to, message) => {
+const sendSMS = async (to, message) => {
     try {
         console.log('Environment check:', {
             STRINGEE_SMS_FROM,
@@ -68,7 +68,7 @@ export const sendSMS = async (to, message) => {
     }
 };
 
-export const makeVoiceCall = async (to, message) => {
+const makeVoiceCall = async (to, message) => {
     try {
         const token = generateStringeeToken();
         const response = await axios.post(STRINGEE_VOICE_API_URL, {
@@ -112,3 +112,5 @@ export const makeVoiceCall = async (to, message) => {
         throw error;
     }
 };
+
+module.exports = { sendSMS, makeVoiceCall };
