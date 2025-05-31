@@ -1,5 +1,5 @@
 # Build phase
-FROM node:18-slim AS builder
+FROM node:18 AS builder
 
 # Install build dependencies for native modules
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -11,18 +11,19 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Set working directory
 WORKDIR /app
 
-# Copy package.json (and package-lock.json if exists)
+# Copy package.json and package-lock.json (if exists)
 COPY package*.json ./
 
 # Clear npm cache, remove node_modules and package-lock.json, then install dependencies
 RUN npm cache clean --force && \
     rm -rf node_modules package-lock.json && \
-    npm install
+    npm install && \
+    npm install firebase@10.14.1
 
 # Copy frontend code
 COPY . .
 
-# Build React app (or Vite app)
+# Build Vite app
 RUN npm run build
 
 # Serve phase
