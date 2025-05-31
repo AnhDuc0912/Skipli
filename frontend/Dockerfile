@@ -18,8 +18,14 @@ COPY . .
 # Build Vite app
 RUN npm run build
 
+# Serve phase
+FROM nginx:alpine
+
+# Copy static files from build phase
+COPY --from=builder /app/dist /usr/share/nginx/html
+
 # Expose port
 EXPOSE 80
 
 # Run Nginx
-CMD ["npm", "start"]
+CMD ["nginx", "-g", "daemon off;"]
