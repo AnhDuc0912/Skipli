@@ -10,7 +10,7 @@ COPY package*.json ./
 # Cài dependencies
 RUN npm cache clean --force && \
     rm -rf node_modules package-lock.json && \
-    npm install
+    npm install && npm install express
 
 # Copy toàn bộ code backend vào container
 COPY . .
