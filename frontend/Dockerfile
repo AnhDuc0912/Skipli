@@ -11,14 +11,8 @@ RUN npm cache clean --force && \
 
 # Copy source code + env file
 COPY . .
-COPY .env.production . 
-
 # Build Vite app - đây là lúc VITE_API_URL trong .env.production được đọc
 RUN npm run build
-
-FROM nginx:alpine
-
-COPY --from=builder /app/dist /usr/share/nginx/html
 
 EXPOSE 80
 
