@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 8000
 
 # Lệnh chạy server
-CMD ["npm", "run", "dev"]
+CMD ["npm", "start"]
