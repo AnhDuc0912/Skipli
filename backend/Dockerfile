@@ -8,8 +8,9 @@ WORKDIR /app
 COPY package*.json ./
 
 # Cài dependencies
-RUN rm -rf node_modules package-lock.json && \
-    npm install && 
+RUN npm cache clean --force && \
+    rm -rf node_modules package-lock.json && \
+    npm install
 
 # Copy toàn bộ code backend vào container
 COPY . .
