@@ -13,7 +13,7 @@
     "backend": "file:",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
-    "debug": "~2.6.9",
+    "debug": "^4.4.1",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "firebase-admin": "^13.4.0",
