@@ -1,3 +1,21 @@
+**Run App**
+ 
+ back end:
+ 
+•	cd ./backend
+
+•	yarn dev
+
+font end: 
+
+•	cd ./frontend
+
+•	yarn dev
+
+•	Or you can test on: [http://skipli.ducdatphat.id.vn/]([url](http://skipli.ducdatphat.id.vn/))
+
+•	Figma andworkflow: [https://www.figma.com/design/oylqtYAOVmhFWivXEEc1wr/Untitled?node-id=0-1&t=i6lxlyC5mfDSPmcv-1]([url](https://www.figma.com/design/oylqtYAOVmhFWivXEEc1wr/Untitled?node-id=0-1&t=i6lxlyC5mfDSPmcv-1))
+
 Code Organization
 **Back-end**:  Handles API logic, Stringee SMS/Voice, and Firebase integration.
 •	app.js: Initializes Express server and routes.
@@ -38,16 +56,4 @@ Idea Generation
 Profile Page
 
 ![image](https://github.com/user-attachments/assets/6dd60737-d4c5-462d-bc09-a614bf3f051e)
-
-**Run App**
-back end:
-•	cd ./backend
-•	yarn dev
-
-font end: 
-•	cd ./frontend
-•	yarn dev
-
-•	Or you can test on: [http://skipli.ducdatphat.id.vn/]([url](http://skipli.ducdatphat.id.vn/))
-•	Figma andworkflow: [https://www.figma.com/design/oylqtYAOVmhFWivXEEc1wr/Untitled?node-id=0-1&t=i6lxlyC5mfDSPmcv-1]([url](https://www.figma.com/design/oylqtYAOVmhFWivXEEc1wr/Untitled?node-id=0-1&t=i6lxlyC5mfDSPmcv-1))
 
