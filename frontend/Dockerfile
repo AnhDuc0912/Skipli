@@ -11,17 +11,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json (if exists)
+# Copy package.json (and package-lock.json if exists)
 COPY package*.json ./
 
-# Clear npm cache and install dependencies
+# Clear npm cache, remove node_modules and package-lock.json, then install dependencies
 RUN npm cache clean --force && \
+    rm -rf node_modules package-lock.json && \
     npm install
 
 # Copy frontend code
 COPY . .
 
-# Build React app
+# Build React app (or Vite app)
 RUN npm run build
 
 # Serve phase
