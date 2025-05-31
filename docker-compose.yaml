@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - NODE_ENV=production
+      - STRINGEE_API_KEY_SID=${STRINGEE_API_KEY_SID}
+      - STRINGEE_API_KEY_SECRET=${STRINGEE_API_KEY_SECRET}
+      - STRINGEE_SMS_FROM=${STRINGEE_SMS_FROM}
+      - STRINGEE_CALL_FROM=${STRINGEE_CALL_FROM}
+      - FIREBASE_PROJECT_ID=${FIREBASE_PROJECT_ID}
+      - FIREBASE_PRIVATE_KEY=${FIREBASE_PRIVATE_KEY}
+      - FIREBASE_CLIENT_EMAIL=${FIREBASE_CLIENT_EMAIL}
+    volumes:
+      - ./backend:/app
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      - VITE_API_BASE_URL=http://backend:8000/api
+      - VITE_STRINGEE_API_KEY_SID=${STRINGEE_API_KEY_SID}
+      - VITE_STRINGEE_API_KEY_SECRET=${STRINGEE_API_KEY_SECRET}
+      - VITE_STRINGEE_SMS_FROM=${STRINGEE_SMS_FROM}
+      - VITE_STRINGEE_CALL_FROM=${STRINGEE_CALL_FROM}
+      - VITE_FIREBASE_PROJECT_ID=${FIREBASE_PROJECT_ID}
+      - VITE_FIREBASE_PRIVATE_KEY=${FIREBASE_PRIVATE_KEY}
+      - VITE_FIREBASE_CLIENT_EMAIL=${FIREBASE_CLIENT_EMAIL}
+    networks:
+      - app-network
+    depends_on:
+      - backend
+
+networks:
+  app-network:
+    driver: bridge

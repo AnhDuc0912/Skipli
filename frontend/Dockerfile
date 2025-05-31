@@ -1,32 +1,40 @@
-# Giai đoạn build
-FROM node:18-alpine AS builder
+# Build phase
+FROM node:18-slim AS builder
 
-# Thiết lập thư mục làm việc
+# Install build dependencies for native modules
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3 \
+    make \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
 WORKDIR /app
 
-# Copy package.json và package-lock.json
+# Copy package.json and package-lock.json (if exists)
 COPY package*.json ./
 
-# Cài dependencies
-RUN npm install
+# Clear npm cache and install dependencies
+RUN npm cache clean --force && \
+    npm install
 
-# Copy toàn bộ code frontend
+# Copy frontend code
 COPY . .
 
 # Build React app
 RUN npm run build
 
-# Giai đoạn serve
+# Serve phase
 FROM nginx:alpine
 
-# Copy static files từ giai đoạn build
-COPY --from=builder /app/dist /usr/share/nginx/html
+# Copy static files from build phase
+COPY --from=builder /app/build /usr/share/nginx/html
 
-# Copy Nginx config (tùy chọn, nếu cần)
+# Copy Nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Expose port (Nginx chạy trên port 80)
+# Expose port
 EXPOSE 80
 
-# Chạy Nginx
+# Run Nginx
 CMD ["nginx", "-g", "daemon off;"]
