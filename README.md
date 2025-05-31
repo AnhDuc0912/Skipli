@@ -17,6 +17,7 @@ font end:
 •	Figma andworkflow: [https://www.figma.com/design/oylqtYAOVmhFWivXEEc1wr/Untitled?node-id=0-1&t=i6lxlyC5mfDSPmcv-1]([url](https://www.figma.com/design/oylqtYAOVmhFWivXEEc1wr/Untitled?node-id=0-1&t=i6lxlyC5mfDSPmcv-1))
 
 Code Organization
+
 **Back-end**:  Handles API logic, Stringee SMS/Voice, and Firebase integration.
 •	app.js: Initializes Express server and routes.
 •	src/services/stringee.service.js: Manages Stringee API calls.
