@@ -15,15 +15,14 @@
     "@mui/icons-material": "^7.1.0",
     "@mui/material": "^7.1.0",
     "dotenv": "^16.5.0",
-    "frontend": "file:",
     "firebase": "^10.14.1",
+    "frontend": "file:",
     "libphonenumber-js": "^1.12.8",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.1"
   },
   "devDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "^4.9.5",
     "@eslint/js": "^9.25.0",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
